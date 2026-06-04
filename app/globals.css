@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --comic-yellow: #ffd60a;
+  --comic-red: #ef233c;
+  --comic-blue: #2962ff;
+  --comic-pink: #ff4ecd;
+  --comic-cyan: #00e5ff;
+  --comic-green: #00c853;
+  --comic-purple: #8e24aa;
+  --comic-orange: #ff6d00;
+  --comic-cream: #fff3c4;
+  --comic-black: #0a0a0a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-comic-yellow: var(--comic-yellow);
+  --color-comic-red: var(--comic-red);
+  --color-comic-blue: var(--comic-blue);
+  --color-comic-pink: var(--comic-pink);
+  --color-comic-cyan: var(--comic-cyan);
+  --color-comic-green: var(--comic-green);
+  --color-comic-purple: var(--comic-purple);
+  --color-comic-orange: var(--comic-orange);
+  --color-comic-cream: var(--comic-cream);
+  --color-comic-black: var(--comic-black);
+  --font-display: var(--font-bangers), "Bangers", Impact, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .font-display {
+    font-family: var(--font-bangers), "Bangers", Impact, sans-serif;
+    letter-spacing: 0.04em;
+  }
+  .text-stroke-black {
+    -webkit-text-stroke: 2px #000;
+    paint-order: stroke fill;
+  }
+  .shadow-comic {
+    box-shadow: 6px 6px 0 0 #000;
+  }
+  .shadow-comic-lg {
+    box-shadow: 10px 10px 0 0 #000;
+  }
+  .shadow-comic-sm {
+    box-shadow: 4px 4px 0 0 #000;
+  }
+  .border-comic {
+    border: 3px solid #000;
+  }
+  .border-comic-thick {
+    border: 4px solid #000;
+  }
+  .halftone {
+    background-image: radial-gradient(circle, #000 1px, transparent 1.5px);
+    background-size: 10px 10px;
+  }
+  .stripes-yellow {
+    background-image: repeating-linear-gradient(
+      45deg,
+      #ffd60a 0,
+      #ffd60a 14px,
+      #000 14px,
+      #000 18px
+    );
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--comic-cream);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(255, 78, 205, 0.18) 0, transparent 35%),
+    radial-gradient(circle at 80% 0%, rgba(0, 229, 255, 0.18) 0, transparent 35%),
+    radial-gradient(circle at 50% 100%, rgba(255, 109, 0, 0.15) 0, transparent 40%);
+}
+
+::selection {
+  background: #ffd60a;
+  color: #000;
 }
