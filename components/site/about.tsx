@@ -2,9 +2,9 @@ import Image from "next/image";
 
 const milestones = [
   {
-    years: "5 let",
+    years: "Weby po staru",
     title: "SEO & Webmaster",
-    where: "skupina Spěváček / Najdijazyky",
+    where: "skupina Spěváček",
     color: "bg-comic-pink",
   },
   {
