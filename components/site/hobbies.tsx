@@ -40,7 +40,7 @@ export function Hobbies() {
         </ul>
 
         <div className="mt-12 inline-block -rotate-1 rounded-2xl border-comic-thick bg-comic-red px-6 py-4 font-display text-3xl text-stroke-black shadow-comic">
-          BOOM! Život jede.
+          BOOM!
         </div>
       </div>
     </section>
