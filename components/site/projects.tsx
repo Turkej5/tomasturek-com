@@ -31,6 +31,14 @@ const projects = [
     text: "text-white",
     tag: "Hobby",
   },
+  {
+    name: "Remindy",
+    url: "https://www.remindy.cz",
+    desc: "Chytrý kalendář a připomínky — ať ti nic neuteče.",
+    color: "bg-comic-purple",
+    text: "text-white",
+    tag: "App",
+  },
 ];
 
 export function Projects() {
