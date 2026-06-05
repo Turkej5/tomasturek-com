@@ -37,7 +37,7 @@ export function Contact() {
               <div className="text-lg font-bold">
                 Head of Digital{" "}
                 <a
-                  href="https://www.shepras.cz"
+                  href="https://www.sherpas.cz"
                   target="_blank"
                   rel="noopener"
                   className="underline decoration-2 underline-offset-2"

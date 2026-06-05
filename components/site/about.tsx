@@ -87,7 +87,7 @@ export function About() {
               <p className="text-base leading-relaxed">
                 Dneska řídím digitál v{" "}
                 <a
-                  href="https://www.shepras.cz"
+                  href="https://www.sherpas.cz"
                   target="_blank"
                   rel="noopener"
                   className="font-bold underline decoration-2 underline-offset-2"

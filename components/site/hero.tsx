@@ -26,7 +26,7 @@ export function Hero() {
           <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-black/80 sm:text-xl">
             Head of Digital v{" "}
             <a
-              href="https://www.shepras.cz"
+              href="https://www.sherpas.cz"
               target="_blank"
               rel="noopener"
               className="rounded-sm bg-comic-yellow px-1 font-bold underline decoration-black decoration-2"
