@@ -10,6 +10,23 @@ const OPEN_EVENT = "tt:open-cookie-consent";
 
 type Consent = "accepted" | "declined" | null;
 
+declare global {
+  interface Window {
+    dataLayer: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+function pushConsentUpdate(granted: boolean) {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  window.gtag("consent", "update", {
+    analytics_storage: granted ? "granted" : "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+}
+
 export function CookieConsent() {
   const [mounted, setMounted] = useState(false);
   const [consent, setConsent] = useState<Consent>(null);
@@ -19,11 +36,13 @@ export function CookieConsent() {
     const saved = window.localStorage.getItem(STORAGE_KEY);
     if (saved === "accepted" || saved === "declined") {
       setConsent(saved);
+      pushConsentUpdate(saved === "accepted");
     }
 
     const onOpen = () => {
       window.localStorage.removeItem(STORAGE_KEY);
       setConsent(null);
+      pushConsentUpdate(false);
     };
     window.addEventListener(OPEN_EVENT, onOpen);
     return () => window.removeEventListener(OPEN_EVENT, onOpen);
@@ -32,20 +51,23 @@ export function CookieConsent() {
   function accept() {
     window.localStorage.setItem(STORAGE_KEY, "accepted");
     setConsent("accepted");
+    pushConsentUpdate(true);
   }
 
   function decline() {
     window.localStorage.setItem(STORAGE_KEY, "declined");
     setConsent("declined");
+    pushConsentUpdate(false);
   }
 
   return (
     <>
-      {consent === "accepted" && (
-        <Script id="gtm-loader" strategy="afterInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
-        </Script>
-      )}
+      <Script id="gtm-consent-defaults" strategy="beforeInteractive">
+        {`window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments)};window.gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','functionality_storage':'granted','security_storage':'granted','wait_for_update':500});`}
+      </Script>
+      <Script id="gtm-loader" strategy="afterInteractive">
+        {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
+      </Script>
 
       {mounted && consent === null && (
         <div
@@ -130,4 +152,3 @@ export function CookieSettingsLink({
     </button>
   );
 }
-

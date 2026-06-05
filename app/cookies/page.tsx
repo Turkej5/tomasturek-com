@@ -53,9 +53,12 @@ export default function CookiesPage() {
           <article className="rounded-2xl border-comic-thick bg-white p-6 shadow-comic-sm">
             <h2 className="font-display text-3xl">Co o tobě sleduju</h2>
             <p className="mt-2 text-base leading-relaxed">
-              Pokud klikneš „Souhlasím" v cookie liště, načte se{" "}
-              <strong>Google Tag Manager</strong> a přes něj{" "}
-              <strong>Google Analytics 4</strong>. Tedy:
+              Web používá <strong>Google Tag Manager</strong> a{" "}
+              <strong>Google Analytics 4</strong> v režimu{" "}
+              <strong>Consent Mode v2</strong>. Bez tvého souhlasu jsou všechny
+              měřicí tagy ve výchozím stavu <em>denied</em> — nic se neměří
+              a žádné měřicí cookies se nenastaví. Po kliku „Souhlasím"
+              v liště se měření zapne. Pak posílám:
             </p>
             <ul className="mt-3 list-disc space-y-1 pl-6 text-base leading-relaxed">
               <li>kolik vás sem chodí (počet návštěvníků, relací)</li>
