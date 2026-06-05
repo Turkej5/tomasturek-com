@@ -40,7 +40,7 @@ export function About() {
               O mně
             </span>
             <h2 className="mt-3 font-display text-5xl sm:text-6xl">
-              Marketing, kód, kafe a hory.
+              Marketing, kód, pivo a hory.
             </h2>
           </div>
           <p className="max-w-md text-base leading-relaxed text-black/80">
