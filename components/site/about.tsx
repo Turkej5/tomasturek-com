@@ -10,19 +10,13 @@ const milestones = [
   {
     years: "Lektor",
     title: "Online marketing",
-    where: "GigiAka",
+    where: "DigiAka a Dobrý web (PPC)",
     color: "bg-comic-cyan",
-  },
-  {
-    years: "Lektor",
-    title: "PPC pro pokročilé",
-    where: "Dobrý web",
-    color: "bg-comic-yellow",
   },
   {
     years: "Přednášející",
     title: "Online marketing",
-    where: "VŠE — pro ClickIT",
+    where: "VŠE — pro ClickIT a WT100",
     color: "bg-comic-orange",
   },
 ];
