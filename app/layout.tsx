@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bangers, Inter } from "next/font/google";
+import { CookieConsent } from "@/components/site/cookie-consent";
 import "./globals.css";
 
 const bangers = Bangers({
@@ -51,6 +52,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#fff3c4] text-black font-[family-name:var(--font-inter)]">
         {children}
+        <CookieConsent />
       </body>
     </html>
   );
