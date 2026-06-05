@@ -4,7 +4,7 @@ import { LogoTT } from "./logo";
 const links = [
   { href: "#o-mne", label: "O mně" },
   { href: "#projekty", label: "Projekty" },
-  { href: "#cestovky", label: "Cestovky" },
+  { href: "#cestovky", label: "Cestoweby" },
   { href: "#zaliby", label: "Záliby" },
   { href: "#kontakt", label: "Kontakt" },
 ];

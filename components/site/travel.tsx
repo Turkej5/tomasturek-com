@@ -31,7 +31,7 @@ export function Travel() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-12">
           <span className="inline-block -rotate-2 rounded-md border-comic-thick bg-comic-pink px-3 py-1 font-bold uppercase text-white shadow-comic-sm">
-            Cestovatelské weby
+            Cestoweby
           </span>
           <h2 className="mt-3 font-display text-5xl sm:text-6xl">
             Průvodci a ubytko po Evropě.
