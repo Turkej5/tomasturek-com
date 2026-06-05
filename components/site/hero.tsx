@@ -31,7 +31,7 @@ export function Hero() {
               rel="noopener"
               className="rounded-sm bg-comic-yellow px-1 font-bold underline decoration-black decoration-2"
             >
-              Shepras
+              Sherpas
             </a>
             , marketingový specialista, PPC konzultant a vášnivý vibecoder.
             Stavím digitálního ekosystému a cestovatelské weby.

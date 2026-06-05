@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Tomáš Turek",
   },
   description:
-    "Tomáš Turek — Head of Digital v Shepras, PPC a marketingový specialista, vibecoder a tvůrce cestovatelských webů.",
+    "Tomáš Turek — Head of Digital v Sherpas, PPC a marketingový specialista, vibecoder a tvůrce cestovatelských webů.",
   openGraph: {
     title: "Tomáš Turek",
     description:

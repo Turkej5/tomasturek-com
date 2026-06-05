@@ -42,7 +42,7 @@ export function Contact() {
                   rel="noopener"
                   className="underline decoration-2 underline-offset-2"
                 >
-                  Shepras
+                  Sherpas
                 </a>
               </div>
             </div>

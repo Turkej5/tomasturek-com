@@ -2,6 +2,12 @@ import Image from "next/image";
 
 const milestones = [
   {
+    years: "Marketing",
+    title: "Head of Digital",
+    where: "Sherpas",
+    color: "bg-comic-yellow",
+  },
+  {
     years: "Weby po staru",
     title: "SEO & Webmaster",
     where: "skupina Spěváček",
@@ -86,10 +92,10 @@ export function About() {
                   rel="noopener"
                   className="font-bold underline decoration-2 underline-offset-2"
                 >
-                  Shepras
+                  Sherpas
                 </a>
-                , vedle toho dělám PPC, konzultace a stavím vlastní projekty —
-                od finančního nástroje po sbírku pivních půllitrů.
+                , vedle toho dělám PPC, konzultace a stavím vlastní online
+                projekty.
               </p>
             </div>
           </div>
