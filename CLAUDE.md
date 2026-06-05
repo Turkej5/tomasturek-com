@@ -8,29 +8,25 @@ One-page osobní web Tomáše Turka. Komiksový styl, výrazné barvy, Bangers f
 - **Next.js 16** App Router + React 19 + TypeScript (strict).
 - **Tailwind CSS 4** (bez `tailwind.config.ts`, vše v `@theme inline` v `app/globals.css`).
 - **Fonty:** `Bangers` (display, headings, badge) a `Inter` (body) přes `next/font/google`.
-- **DB:** Neon Postgres přes `@neondatabase/serverless` (tagged template literals). **Žádný e-mail forwarding** — zprávy se jen ukládají do DB, Tomáš si je čte přímo.
-- **Validace:** Zod.
+- **Kontaktní formulář:** posílá data přímo z klienta na **Web3Forms API** (`https://api.web3forms.com/submit`). Žádný backend, žádná DB. Access key je veřejný identifikátor formuláře — žije v `components/site/contact-form.tsx`.
 
 ## Struktura
 - `app/layout.tsx` — fonty, metadata, OG.
 - `app/page.tsx` — skládá sekce.
-- `app/api/contact/route.ts` — POST handler (Zod → rate-limit → Neon). Bez `DATABASE_URL` jen zaloguje a vrátí `{ok:true}` — dev funguje bez setupu.
+- `app/icon.svg` — favicon (TT logo, komiksový styl).
 - `app/globals.css` — komiksová paleta (`--comic-yellow/red/blue/pink/cyan/green/purple/orange/cream/black`) + utility (`shadow-comic`, `border-comic-thick`, `halftone`, `stripes-yellow`, `text-stroke-black`).
-- `components/site/*` — `logo.tsx` (SVG TT badge), `nav.tsx`, `hero.tsx`, `about.tsx`, `projects.tsx`, `travel.tsx`, `hobbies.tsx`, `contact.tsx`, `contact-form.tsx` (`"use client"`), `footer.tsx`.
-- `lib/db.ts` — `getSql()` vrací `null` když chybí `DATABASE_URL`.
-- `lib/rate-limit.ts` — in-memory bucket per IP (5/hod). V serverless prostředí best-effort, ne striktní limit.
+- `components/site/*` — `logo.tsx` (SVG TT badge), `nav.tsx`, `hero.tsx`, `about.tsx`, `projects.tsx`, `travel.tsx`, `hobbies.tsx`, `contact.tsx`, `contact-form.tsx` (`"use client"`, POST na Web3Forms), `footer.tsx`.
 - `public/` — `tom.png` (hero), `tomas-turek-profile.jpg` (about), `tomas-turek.jpg`.
 
-## Env (`.env.example`)
-- `DATABASE_URL` — Neon, ideálně přes Vercel Marketplace integraci.
+## Env
+Web aktuálně žádné env proměnné nepotřebuje (kontaktní formulář jede přes Web3Forms API přímo z prohlížeče).
 
 ## Dev
 - `npm run dev` (Turbopack). Port preferenčně 3018 (`PORT=3018 npm run dev`).
-- Test API: `curl -X POST http://localhost:3018/api/contact -H "Content-Type: application/json" -d '{"name":"x","email":"x@x.cz","message":"hello"}'`.
 
 ## Dům, kde se nehasí (KRITICKÉ)
 - Doména **tomasturek.com je registrovaná u Forpsi** a **běží na ní Gmail (Google Workspace)**.
-- Při napojení na Vercel se mění **JEN**: `A` pro apex (`76.76.21.21`) a `CNAME` pro `www` (`cname.vercel-dns.com`).
+- Při napojení na Vercel se mění **JEN**: `A` pro apex a `CNAME` pro `www` (Vercel ti řekne aktuální cílové hodnoty).
 - **NIKDY** nesahat na: `MX` (Gmail), `TXT` pro SPF / DKIM / Google site verification, případné `CNAME` pro `mail.` / `calendar.` apod.
 - Před jakoukoli změnou DNS u Forpsi: vyexportovat/screenshotovat aktuální zónu.
 
@@ -41,5 +37,5 @@ One-page osobní web Tomáše Turka. Komiksový styl, výrazné barvy, Bangers f
 
 ## Bezpečnost
 - `.env*` v `.gitignore` (výjimka jen `.env.example`).
-- API: Zod validace, honeypot field `website`, rate-limit, parametrizované SQL přes neon tagged templates.
-- Nikdy nepoužívat `VITE_*` / `NEXT_PUBLIC_*` pro `DATABASE_URL` — je server-side.
+- Formulář: HTML validace (`required`, `type="email"`, `maxLength`), honeypot pole `botcheck` (Web3Forms konvence), rate-limit a anti-spam řeší Web3Forms na své straně.
+- Pokud bys nastavoval custom backend zase, dej `RESEND_API_KEY` / `DATABASE_URL` jen na server (nikdy `NEXT_PUBLIC_*`).

@@ -2,6 +2,8 @@
 
 import { useState, type FormEvent } from "react";
 
+const WEB3FORMS_ACCESS_KEY = "9e1b9686-af54-4a4c-bd2d-fe48ac8e29fb";
+
 type Status =
   | { state: "idle" }
   | { state: "loading" }
@@ -15,27 +17,41 @@ export function ContactForm() {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
+
+    if (String(data.get("botcheck") ?? "")) {
+      setStatus({ state: "success" });
+      form.reset();
+      return;
+    }
+
     const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: "Nová zpráva z tomasturek.com",
+      from_name: "Web tomasturek.com",
       name: String(data.get("name") ?? "").trim(),
       email: String(data.get("email") ?? "").trim(),
       message: String(data.get("message") ?? "").trim(),
-      website: String(data.get("website") ?? ""),
     };
 
     setStatus({ state: "loading" });
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify(payload),
       });
+      const body = (await res.json().catch(() => null)) as
+        | { success?: boolean; message?: string }
+        | null;
 
-      if (!res.ok) {
-        const body = (await res.json().catch(() => null)) as
-          | { error?: string }
-          | null;
-        throw new Error(body?.error ?? "Něco se pokazilo. Zkus to prosím znovu.");
+      if (!res.ok || !body?.success) {
+        throw new Error(
+          body?.message ?? "Něco se pokazilo. Zkus to prosím znovu.",
+        );
       }
 
       setStatus({ state: "success" });
@@ -49,8 +65,8 @@ export function ContactForm() {
   return (
     <form onSubmit={onSubmit} className="grid gap-4">
       <input
-        type="text"
-        name="website"
+        type="checkbox"
+        name="botcheck"
         tabIndex={-1}
         autoComplete="off"
         className="hidden"
