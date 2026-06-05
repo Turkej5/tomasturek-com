@@ -1,4 +1,4 @@
-import { CookieSettingsLink } from "./cookie-consent";
+import Link from "next/link";
 import { LogoTT } from "./logo";
 
 export function Footer() {
@@ -25,7 +25,12 @@ export function Footer() {
             info@tomasturek.com
           </a>{" "}
           ·{" "}
-          <CookieSettingsLink className="underline decoration-2 underline-offset-2 hover:no-underline" />
+          <Link
+            href="/cookies"
+            className="underline decoration-2 underline-offset-2 hover:no-underline"
+          >
+            Zásady cookies
+          </Link>
         </div>
       </div>
     </footer>

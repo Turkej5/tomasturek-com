@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Script from "next/script";
 import { useEffect, useState } from "react";
 
@@ -75,7 +76,7 @@ export function CookieConsent() {
               </div>
             </div>
 
-            <div className="mt-5 flex flex-wrap gap-3">
+            <div className="mt-5 flex flex-wrap items-center gap-3">
               <button
                 onClick={accept}
                 type="button"
@@ -90,6 +91,12 @@ export function CookieConsent() {
               >
                 Děkuji, nechci
               </button>
+              <Link
+                href="/cookies"
+                className="ml-auto text-sm font-bold underline decoration-2 underline-offset-2 hover:no-underline"
+              >
+                Více info →
+              </Link>
             </div>
           </div>
         </div>
@@ -104,7 +111,13 @@ export function openCookieConsent() {
   }
 }
 
-export function CookieSettingsLink({ className }: { className?: string }) {
+export function CookieSettingsLink({
+  className,
+  children = "Cookies",
+}: {
+  className?: string;
+  children?: React.ReactNode;
+}) {
   return (
     <button
       type="button"
@@ -113,7 +126,7 @@ export function CookieSettingsLink({ className }: { className?: string }) {
         className ?? "underline decoration-2 underline-offset-2 hover:no-underline"
       }
     >
-      Cookies
+      {children}
     </button>
   );
 }
