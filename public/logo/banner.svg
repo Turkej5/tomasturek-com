@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Bangers&amp;display=swap');</style>
+    <pattern id="tt-dots-b" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1" fill="#0a0a0a" opacity="0.35"/>
+    </pattern>
+    <pattern id="bn-stripes" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect x="0" y="0" width="32" height="40" fill="#ffd60a"/>
+      <rect x="32" y="0" width="8" height="40" fill="#0a0a0a"/>
+    </pattern>
+  </defs>
+  <rect x="0" y="0" width="1584" height="396" fill="#ffd60a"/>
+  <rect x="0" y="0" width="1584" height="396" fill="url(#bn-stripes)" opacity="0.35"/>
+  <rect x="6" y="6" width="1572" height="384" fill="none" stroke="#0a0a0a" stroke-width="12"/>
+
+  <g transform="translate(80 50) scale(2.4)">
+    <polygon points="60,2 70,20 90,10 86,32 110,28 96,48 118,60 96,72 110,92 86,88 90,110 70,100 60,118 50,100 30,110 34,88 10,92 24,72 2,60 24,48 10,28 34,32 30,10 50,20" fill="#ffd60a" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="60" cy="60" r="40" fill="#2962ff" stroke="#0a0a0a" stroke-width="4"/>
+    <circle cx="60" cy="60" r="40" fill="url(#tt-dots-b)"/>
+    <g font-family="Impact, 'Arial Black', sans-serif" font-weight="900" font-size="62" text-anchor="middle" paint-order="stroke">
+      <text x="46" y="80" fill="#ef233c" stroke="#0a0a0a" stroke-width="3" transform="rotate(-8 46 80)">T</text>
+      <text x="78" y="82" fill="#fff3c4" stroke="#0a0a0a" stroke-width="3" transform="rotate(6 78 82)">T</text>
+    </g>
+  </g>
+
+  <g transform="translate(420 0)">
+    <text x="0" y="170" font-family="Bangers, Impact, 'Arial Black', sans-serif" font-weight="400" font-size="120" fill="#0a0a0a" letter-spacing="4">TOMÁŠ TUREK</text>
+    <text x="0" y="240" font-family="Bangers, Impact, 'Arial Black', sans-serif" font-weight="400" font-size="46" fill="#ef233c" stroke="#0a0a0a" stroke-width="2" paint-order="stroke" letter-spacing="3">HEAD OF DIGITAL · MARKETING · VIBECODER</text>
+  </g>
+
+  <g transform="translate(1300 80) rotate(12)">
+    <rect x="-90" y="-40" width="180" height="80" rx="40" fill="#ef233c" stroke="#0a0a0a" stroke-width="6"/>
+    <text x="0" y="22" text-anchor="middle" font-family="Bangers, Impact, 'Arial Black', sans-serif" font-size="56" fill="#fff3c4" stroke="#0a0a0a" stroke-width="3" paint-order="stroke">POW!</text>
+  </g>
+</svg>
