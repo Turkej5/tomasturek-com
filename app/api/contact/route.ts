@@ -13,10 +13,6 @@ const ContactSchema = z.object({
   website: z.string().max(0).optional(),
 });
 
-const TO_EMAIL = "info@tomasturek.com";
-const FROM_EMAIL =
-  process.env.CONTACT_FROM_EMAIL ?? "Tomáš Turek <onboarding@resend.dev>";
-
 export async function POST(request: Request) {
   const hdrs = await headers();
   const ip =
@@ -80,43 +76,5 @@ export async function POST(request: Request) {
     console.warn("[contact] DATABASE_URL not set — skipping DB insert.");
   }
 
-  const resendKey = process.env.RESEND_API_KEY;
-  if (resendKey) {
-    try {
-      const { Resend } = await import("resend");
-      const resend = new Resend(resendKey);
-      const safeName = escapeHtml(name);
-      const safeEmail = escapeHtml(email);
-      const safeMessage = escapeHtml(message).replace(/\n/g, "<br/>");
-      await resend.emails.send({
-        from: FROM_EMAIL,
-        to: TO_EMAIL,
-        replyTo: email,
-        subject: `Nová zpráva z webu od ${name}`,
-        html: `
-          <h2 style="font-family:Arial,sans-serif">Nová zpráva z tomasturek.com</h2>
-          <p><strong>Jméno:</strong> ${safeName}<br/>
-             <strong>E-mail:</strong> ${safeEmail}</p>
-          <p style="white-space:pre-wrap;font-family:Arial,sans-serif">${safeMessage}</p>
-          <hr/>
-          <p style="font-size:12px;color:#666">IP: ${escapeHtml(ip)} · UA: ${escapeHtml(userAgent)}</p>
-        `,
-      });
-    } catch (err) {
-      console.error("[contact] Email error:", err);
-    }
-  } else {
-    console.warn("[contact] RESEND_API_KEY not set — skipping email.");
-  }
-
   return Response.json({ ok: true });
-}
-
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
 }

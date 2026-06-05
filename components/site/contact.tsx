@@ -72,7 +72,7 @@ export function Contact() {
           <div className="relative rounded-3xl border-comic-thick bg-white p-6 shadow-comic sm:p-8">
             <h3 className="font-display text-3xl">Napiš mi</h3>
             <p className="mt-1 text-sm text-black/70">
-              Zpráva přijde rovnou na e-mail a uloží se mi do schránky.
+              Zprávu si přečtu ve své schránce a ozvu se ti.
             </p>
             <div className="mt-6">
               <ContactForm />
